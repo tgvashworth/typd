@@ -20,7 +20,7 @@ npm install --save typd
 
 ## Use
 
-`typ` wraps functions to add runtime type-checks to them. The resulting function with throw if the arguments don't match.
+`typd` wraps functions to add runtime type-checks to them. The resulting function with throw if the arguments don't match.
 
 ```js
 import Typd from 'typd';
