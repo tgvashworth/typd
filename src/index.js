@@ -3,7 +3,7 @@
  *
  * Returns a function.
  */
-function typed(...args) {
+function Typd(...args) {
   const fn = args[args.length - 1];
   const checks = args.slice(0, args.length - 1);
   return function (...innerArgs) {
@@ -18,25 +18,22 @@ function typed(...args) {
   };
 }
 
-const exports = {
-  ed: typed,
-  any: (MATCH: any) => {},
-  mixed: (MATCH: mixed) => {},
-  none: (MATCH: void) => {},
-  boolean: (MATCH: boolean) => {},
-  Boolean: (MATCH: Boolean) => {},
-  string: (MATCH: string) => {},
-  String: (MATCH: String) => {},
-  number: (MATCH: number) => {},
-  Number: (MATCH: Number) => {},
-  Object: (MATCH: Object) => {},
-  ArrayOf: check => (arr: Array<any>) => arr.forEach(exports.customOf(check)),
-  optionalOf: check => v => {
-    if (typeof v !== 'undefined') {
-      check(v);
-    }
-  },
-  customOf: check => v => check(v)
+Typd.any = (MATCH: any) => {};
+Typd.mixed = (MATCH: mixed) => {};
+Typd.none = (MATCH: void) => {};
+Typd.boolean = (MATCH: boolean) => {};
+Typd.Boolean = (MATCH: Boolean) => {};
+Typd.string = (MATCH: string) => {};
+Typd.String = (MATCH: String) => {};
+Typd.number = (MATCH: number) => {};
+Typd.Number = (MATCH: Number) => {};
+Typd.Object = (MATCH: Object) => {};
+Typd.ArrayOf = check => (arr: Array<any>) => arr.forEach(Typd.customOf(check));
+Typd.optionalOf = check => v => {
+  if (typeof v !== 'undefined') {
+    check(v);
+  }
 };
+Typd.customOf = check => v => check(v);
 
-export default exports;
+export default Typd;
