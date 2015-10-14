@@ -1,11 +1,7 @@
 {
-  env: {
-    development: {
-      plugins: [
-        "typecheck"
-      ]
-    }
-  },
+  plugins: [
+    "typecheck"
+  ],
   optional: [
     "es7.classProperties",
     "runtime"
