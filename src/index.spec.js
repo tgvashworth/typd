@@ -262,6 +262,11 @@ describe('expect type checker', () => {
     [Typd.optionalOf(Typd.boolean), undefined, 'not to throw'],
     [Typd.optionalOf(Typd.boolean), 1,         'to throw'],
 
+    // oneOf
+    [Typd.oneOf(Typd.boolean, Typd.string), 'custom', 'not to throw'],
+    [Typd.oneOf(Typd.boolean, Typd.string), true,     'not to throw'],
+    [Typd.oneOf(Typd.boolean, Typd.string), {},       'to throw'],
+
     // customOf
     [Typd.customOf(custom), 'custom',     'not to throw'],
     [Typd.customOf(custom), 'not custom', 'to throw'],

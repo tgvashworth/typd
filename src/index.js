@@ -29,6 +29,17 @@ Typd.number = (MATCH: number) => {};
 Typd.Number = (MATCH: Number) => {};
 Typd.Object = (MATCH: Object) => {};
 Typd.ArrayOf = check => (arr: Array<any>) => arr.forEach(Typd.customOf(check));
+Typd.oneOf = (...checks) => v => {
+  var result = checks.some(check => {
+    try {
+      check(v);
+      return true;
+    } catch (e) {}
+  });
+  if (!result) {
+    throw new Error('Argument was not one of supplied types');
+  }
+};
 Typd.optionalOf = check => v => {
   if (typeof v !== 'undefined') {
     check(v);
