@@ -11,7 +11,7 @@ function typed(...args) {
       try {
         check(...innerArgs);
       } catch (e) {
-        throw new Error(`Argument '${argName}' did not match expected type`)
+        throw new Error(`Argument '${argName}' did not match expected type '${check.name}'`)
       }
     });
     return fn.call(this, ...innerArgs);

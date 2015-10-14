@@ -10,12 +10,12 @@ describe('Typ.ed', () => {
   });
 
   it('throws when a check fails', () => {
-    const thrower = () => {
+    const Thrower = () => {
       throw new Error('No way mate');
-    }
+    };
 
     expect(() => {
-      Typ.ed(['arg', thrower], () => {})(true);
-    }, 'to throw', `Argument 'arg' did not match expected type`)
+      Typ.ed(['theTruth', Thrower], theTruth => {})(true);
+    }, 'to throw', `Argument 'theTruth' did not match expected type 'Thrower'`)
   });
 });
