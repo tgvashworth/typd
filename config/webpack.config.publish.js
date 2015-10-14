@@ -4,8 +4,8 @@ var baseConfig = require('./webpack.config');
 
 module.exports = assign(baseConfig, {
   output: {
-    filename: 'typ.js',
-    library: 'Typ',
+    filename: 'typd.js',
+    library: 'Typd',
     libraryTarget: 'commonjs2',
     path: constants.BUILD_DIRECTORY
   }
