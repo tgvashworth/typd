@@ -47,6 +47,20 @@ describe('Typ.ed', () => {
   });
 });
 
+describe('in use', () => {
+  it('is good', () => {
+    const add =
+      Typ.ed(
+        ['a', Typ.number],
+        ['b', Typ.number],
+        (a, b) => a + b
+      );
+
+    expect(() => add(1, 2), 'not to throw');
+    expect(() => add(1, 'hello!'), 'to throw');
+  });
+});
+
 describe('expect type checker', () => {
   [
     // any
