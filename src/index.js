@@ -27,7 +27,12 @@ Typd.String = (MATCH: String) => {};
 Typd.number = (MATCH: number) => {};
 Typd.Number = (MATCH: Number) => {};
 Typd.Object = (MATCH: Object) => {};
-Typd.ArrayOf = check => (arr: Array<any>) => arr.forEach(Typd.customOf(check));
+Typd.ArrayOf = check => (arr: Array<any>) => {
+  if (!Array.isArray(arr)) {
+    throw new Error('Argument is not an Array');
+  }
+  arr.forEach(Typd.customOf(check))
+};
 Typd.oneOf = (...checks) => v => {
   var result = checks.some(check => {
     try {
