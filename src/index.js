@@ -19,7 +19,6 @@ function Typd(...args) {
 }
 
 Typd.any = (MATCH: any) => {};
-Typd.mixed = (MATCH: mixed) => {};
 Typd.none = (MATCH: void) => {};
 Typd.boolean = (MATCH: boolean) => {};
 Typd.Boolean = (MATCH: Boolean) => {};

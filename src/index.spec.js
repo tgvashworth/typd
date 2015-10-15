@@ -82,25 +82,6 @@ describe('expect type checker', () => {
     [Typd.any, {},                    'not to throw'],
     [Typd.any, new Object(),          'not to throw'],
 
-    // mixed
-    [Typd.mixed, undefined,           'not to throw'],
-    [Typd.mixed, true,                'not to throw'],
-    [Typd.mixed, false,               'not to throw'],
-    [Typd.mixed, new Boolean(true),   'not to throw'],
-    [Typd.mixed, new Boolean(false),  'not to throw'],
-    [Typd.mixed, 'hello',             'not to throw'],
-    [Typd.mixed, '',                  'not to throw'],
-    [Typd.mixed, new String('hello'), 'not to throw'],
-    [Typd.mixed, new String(''),      'not to throw'],
-    [Typd.mixed, 0,                   'not to throw'],
-    [Typd.mixed, 1,                   'not to throw'],
-    [Typd.mixed, NaN,                 'not to throw'],
-    [Typd.mixed, new Number(0),       'not to throw'],
-    [Typd.mixed, new Number(1),       'not to throw'],
-    [Typd.mixed, new Number(NaN),     'not to throw'],
-    [Typd.mixed, {},                  'not to throw'],
-    [Typd.mixed, new Object(),        'not to throw'],
-
     // none
     [Typd.none, undefined,           'not to throw'],
     [Typd.none, true,                'to throw'],

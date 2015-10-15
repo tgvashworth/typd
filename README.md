@@ -38,7 +38,6 @@ The `Typd` function takes any number of `[string, function]` tuples that represe
 There are a few available checkers. Some match the `flow` type documentation:
 
 - [`Typd.any`](http://flowtype.org/docs/quick-reference.html#the-any-primitive-type)
-- [`Typd.mixed`](http://flowtype.org/docs/quick-reference.html#the-mixed-primitive-type)
 - [`Typd.none`](http://flowtype.org/docs/quick-reference.html#the-none-primitive-type)
 - [`Typd.boolean`](http://flowtype.org/docs/quick-reference.html#the-boolean-primitive-type)
 - [`Typd.Boolean`](http://flowtype.org/docs/quick-reference.html#the-boolean-constructor)
