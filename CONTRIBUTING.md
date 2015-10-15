@@ -83,7 +83,7 @@ Please follow this process for submitting a patch:
    # Navigate to the newly cloned directory
    cd react-native-web
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/phuu/immutable-reducers
+   git remote add upstream https://github.com/phuu/typd
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
