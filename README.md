@@ -2,7 +2,7 @@
 
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![travis-ci](https://travis-ci.org/phuu/typd.svg?branch=master)](https://travis-ci.org/phuu/typd)
 
-Runtime type-checking for JavaScript. Actually a wrapper around [typecheck][typecheck].
+Runtime type-checking for JavaScript. Mostly a wrapper around [typecheck][typecheck].
 
 ## Table of contents
 
@@ -21,7 +21,7 @@ npm install --save typd
 
 ## Use
 
-`typd` wraps functions to add runtime type-checks to them. The resulting function with throw if the arguments don't match.
+`typd` wraps functions to add runtime type-checks to them. The resulting function will throw if the arguments don't match.
 
 ```js
 import Typd from 'typd';
