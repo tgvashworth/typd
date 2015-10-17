@@ -8,6 +8,7 @@ Runtime type-checking for JavaScript. Actually a wrapper around [typecheck][type
 
 * [Install](#install)
 * [Use](#use)
+* [Examples](#examples)
 * [Contributing](#contributing)
 * [Thanks](#thanks)
 * [License](#license)
@@ -52,6 +53,32 @@ There are a few others available:
 - `Typd.arrayOf` takes another checker, and matches arrays that contain elements that pass the supplied checker type. For example, `Typd.arrayOf(Typd.boolean)`
 - `Typd.maybe` takes another checker, matching that type *or* undefined. For example, `Typd.maybe(Typd.boolean)`.
 - `Typd.oneOf` takes many checkers and makes sure one of them matches. For example, `Typd.oneOf(Typd.string, Typd.String)`.
+
+## Examples
+
+```js
+// Match an array of strings
+var f = Typd(
+  ['...args', Typd.arrayOf(Typd.string)],
+  (...args) => {/* ... */}
+);
+
+// Match two numbers and an optional options object
+var f = Typd(
+  ['a',    Typd.number],
+  ['b',    Typd.number],
+  ['opts', Typd.maybe(Typd.Object)],
+  (a, b, opts={}) => {/* ... */}
+);
+
+// Match an optional array of either strings or numbers.
+const { maybe, arrayOf, oneOf, string, number } = Typd;
+var f = Typd(
+  ['...args', maybe(arrayOf(oneOf(string, number)))],
+  (...args) => {/* ... */}
+);
+```
+
 
 ## Contributing
 
