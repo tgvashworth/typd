@@ -5,12 +5,6 @@ import Typd from '.';
 class Biscuit {}
 class Cake {}
 
-const custom = (v) => {
-  if (v !== 'custom') {
-    throw new Error('nope')
-  }
-};
-
 describe('Typd', () => {
   it('calls the inner function', () => {
     Typd(arg => {
@@ -238,19 +232,24 @@ describe('expect type checker', () => {
     [Typd.ArrayOf(Typd.boolean), [true],   'not to throw'],
     [Typd.ArrayOf(Typd.boolean), ['fish'], 'to throw'],
 
+    // arrayOf
+    [Typd.arrayOf(Typd.boolean), [true],   'not to throw'],
+    [Typd.arrayOf(Typd.boolean), ['fish'], 'to throw'],
+
     // optionalOf
     [Typd.optionalOf(Typd.boolean), true,      'not to throw'],
     [Typd.optionalOf(Typd.boolean), undefined, 'not to throw'],
     [Typd.optionalOf(Typd.boolean), 1,         'to throw'],
 
+    // maybe
+    [Typd.maybe(Typd.boolean), true,      'not to throw'],
+    [Typd.maybe(Typd.boolean), undefined, 'not to throw'],
+    [Typd.maybe(Typd.boolean), 1,         'to throw'],
+
     // oneOf
     [Typd.oneOf(Typd.boolean, Typd.string), 'custom', 'not to throw'],
     [Typd.oneOf(Typd.boolean, Typd.string), true,     'not to throw'],
-    [Typd.oneOf(Typd.boolean, Typd.string), {},       'to throw'],
-
-    // customOf
-    [Typd.customOf(custom), 'custom',     'not to throw'],
-    [Typd.customOf(custom), 'not custom', 'to throw'],
+    [Typd.oneOf(Typd.boolean, Typd.string), {},       'to throw']
   ].forEach(([f, v, assertion, ...rest]) => {
     it(`${assertion} for ${f.name} with ${inspect(v, { depth: 3, colors: false })}`, () => {
       expect(() => f(v), assertion, ...rest);

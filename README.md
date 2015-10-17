@@ -49,9 +49,8 @@ There are a few available checkers. Some match the `flow` type documentation:
 
 There are a few others available:
 
-- `Typd.ArrayOf` is a function that takes another *checker*, matching an array of that type. For example, `Typd.ArrayOf(Typd.boolean)`
-- `Typd.optionalOf` is a function that takes another checker, matching that type *or* undefined. For example, `Typd.optionalOf(Type.boolean)`.
-- `Typd.customOf` is a function that takes any function, so you can build custom checkers. For example, `Typd.customOf(x => Array.isArray(x) && x.length === 2)`.
+- `Typd.arrayOf` takes another checker, and matches arrays that contain elements that pass the supplied checker type. For example, `Typd.arrayOf(Typd.boolean)`
+- `Typd.maybe` takes another checker, matching that type *or* undefined. For example, `Typd.maybe(Type.boolean)`.
 
 ## Contributing
 

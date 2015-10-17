@@ -31,8 +31,9 @@ Typd.ArrayOf = check => (arr: Array<any>) => {
   if (!Array.isArray(arr)) {
     throw new Error('Argument is not an Array');
   }
-  arr.forEach(Typd.customOf(check));
+  arr.forEach(v => check(v));
 };
+Typd.arrayOf = Typd.ArrayOf;
 Typd.oneOf = (...checks) => v => {
   var result = checks.some(check => {
     try {
@@ -49,6 +50,6 @@ Typd.optionalOf = check => v => {
     check(v);
   }
 };
-Typd.customOf = check => v => check(v);
+Typd.maybe = Typd.optionalOf;
 
 export default Typd;
