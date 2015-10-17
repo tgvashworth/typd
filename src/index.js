@@ -27,6 +27,11 @@ Typd.String = (MATCH: String) => {};
 Typd.number = (MATCH: number) => {};
 Typd.Number = (MATCH: Number) => {};
 Typd.Object = (MATCH: Object) => {};
+Typd.function = arg => {
+  if (typeof arg !== 'function') {
+    throw new Error(`Value of argument 'MATCH' violates contract, expected function.`);
+  }
+};
 Typd.ArrayOf = check => (arr: Array<any>) => {
   if (!Array.isArray(arr)) {
     throw new Error('Argument is not an Array');

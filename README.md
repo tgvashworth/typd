@@ -50,6 +50,7 @@ There are a few available checkers. Some match the `flow` type documentation:
 
 There are a few others available:
 
+- `Typd.function` matches any function
 - `Typd.arrayOf` takes another checker, and matches arrays that contain elements that pass the supplied checker type. For example, `Typd.arrayOf(Typd.boolean)`
 - `Typd.maybe` takes another checker, matching that type *or* undefined. For example, `Typd.maybe(Typd.boolean)`.
 - `Typd.oneOf` takes many checkers and makes sure one of them matches. For example, `Typd.oneOf(Typd.string, Typd.String)`.

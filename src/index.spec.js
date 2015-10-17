@@ -75,6 +75,7 @@ describe('expect type checker', () => {
     [Typd.any, new Number(NaN),       'not to throw'],
     [Typd.any, {},                    'not to throw'],
     [Typd.any, new Object(),          'not to throw'],
+    [Typd.any, function () {},        'not to throw'],
 
     // none
     [Typd.none, undefined,           'not to throw'],
@@ -94,6 +95,7 @@ describe('expect type checker', () => {
     [Typd.none, new Number(NaN),     'to throw'],
     [Typd.none, {},                  'to throw'],
     [Typd.none, new Object(),        'to throw'],
+    [Typd.none, function () {},      'to throw'],
 
     // boolean
     [Typd.boolean, undefined,           'to throw'],
@@ -113,6 +115,7 @@ describe('expect type checker', () => {
     [Typd.boolean, new Number(NaN),     'to throw'],
     [Typd.boolean, {},                  'to throw'],
     [Typd.boolean, new Object(),        'to throw'],
+    [Typd.boolean, function () {},      'to throw'],
 
     // Boolean
     [Typd.Boolean, undefined,           'to throw'],
@@ -132,6 +135,7 @@ describe('expect type checker', () => {
     [Typd.Boolean, new Number(NaN),     'to throw'],
     [Typd.Boolean, {},                  'to throw'],
     [Typd.Boolean, new Object(),        'to throw'],
+    [Typd.Boolean, function () {},      'to throw'],
 
     // string
     [Typd.string, undefined,           'to throw'],
@@ -151,6 +155,7 @@ describe('expect type checker', () => {
     [Typd.string, new Number(NaN),     'to throw'],
     [Typd.string, {},                  'to throw'],
     [Typd.string, new Object(),        'to throw'],
+    [Typd.string, function () {},      'to throw'],
 
     // String
     [Typd.String, undefined,           'to throw'],
@@ -170,6 +175,7 @@ describe('expect type checker', () => {
     [Typd.String, new Number(NaN),     'to throw'],
     [Typd.String, {},                  'to throw'],
     [Typd.String, new Object(),        'to throw'],
+    [Typd.String, function () {},      'to throw'],
 
     // number
     [Typd.number, undefined,           'to throw'],
@@ -189,6 +195,7 @@ describe('expect type checker', () => {
     [Typd.number, new Number(NaN),     'to throw'],
     [Typd.number, {},                  'to throw'],
     [Typd.number, new Object(),        'to throw'],
+    [Typd.number, function () {},      'to throw'],
 
     // Number
     [Typd.Number, undefined,           'to throw'],
@@ -208,6 +215,7 @@ describe('expect type checker', () => {
     [Typd.Number, new Number(NaN),     'not to throw'],
     [Typd.Number, {},                  'to throw'],
     [Typd.Number, new Object(),        'to throw'],
+    [Typd.Number, function () {},      'to throw'],
 
     // Object
     [Typd.Object, undefined,           'to throw'],
@@ -227,6 +235,27 @@ describe('expect type checker', () => {
     [Typd.Object, new Number(NaN),     'not to throw'],
     [Typd.Object, {},                  'not to throw'],
     [Typd.Object, new Object(),        'not to throw'],
+    [Typd.Object, function () {},      'to throw'],
+
+    // function
+    [Typd.function, undefined,           'to throw'],
+    [Typd.function, true,                'to throw'],
+    [Typd.function, false,               'to throw'],
+    [Typd.function, new Boolean(true),   'to throw'],
+    [Typd.function, new Boolean(false),  'to throw'],
+    [Typd.function, 'hello',             'to throw'],
+    [Typd.function, '',                  'to throw'],
+    [Typd.function, new String('hello'), 'to throw'],
+    [Typd.function, new String(''),      'to throw'],
+    [Typd.function, 0,                   'to throw'],
+    [Typd.function, 1,                   'to throw'],
+    [Typd.function, NaN,                 'to throw'],
+    [Typd.function, new Number(0),       'to throw'],
+    [Typd.function, new Number(1),       'to throw'],
+    [Typd.function, new Number(NaN),     'to throw'],
+    [Typd.function, {},                  'to throw'],
+    [Typd.function, new Object(),        'to throw'],
+    [Typd.function, function () {},      'not to throw'],
 
     // ArrayOf
     [Typd.ArrayOf(Typd.boolean), [true],   'not to throw'],
