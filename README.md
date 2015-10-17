@@ -58,25 +58,34 @@ There are a few others available:
 ## Examples
 
 ```js
+const { maybe, arrayOf, oneOf, string, number } = Typd;
+
 // Match an array of strings
 var f = Typd(
-  ['...args', Typd.arrayOf(Typd.string)],
+  ['...args', arrayOf(string)],
   (...args) => {/* ... */}
 );
 
 // Match two numbers and an optional options object
 var f = Typd(
-  ['a',    Typd.number],
-  ['b',    Typd.number],
-  ['opts', Typd.maybe(Typd.Object)],
+  ['a',    number],
+  ['b',    number],
+  ['opts', maybe(Object)],
   (a, b, opts={}) => {/* ... */}
 );
 
 // Match an optional array of either strings or numbers.
-const { maybe, arrayOf, oneOf, string, number } = Typd;
 var f = Typd(
   ['...args', maybe(arrayOf(oneOf(string, number)))],
   (...args) => {/* ... */}
+);
+
+
+// Match a string and an optional callback function
+var f = Typd(
+  ['path', string],
+  ['cb', maybe(Typd.function)],
+  (path, cb => {/* ... */}
 );
 ```
 
