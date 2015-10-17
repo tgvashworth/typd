@@ -85,7 +85,7 @@ var f = Typd(
 var f = Typd(
   ['path', string],
   ['cb', maybe(Typd.function)],
-  (path, cb => {/* ... */}
+  (path, cb) => {/* ... */}
 );
 ```
 
