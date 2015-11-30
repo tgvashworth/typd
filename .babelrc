@@ -1,10 +1,9 @@
 {
-  plugins: [
+  "presets": [
+    "es2015",
+    "react"
+  ],
+  "plugins": [
     "typecheck"
-  ],
-  optional: [
-    "es7.classProperties",
-    "runtime"
-  ],
-  stage: 1
+  ]
 }

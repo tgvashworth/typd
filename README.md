@@ -70,7 +70,7 @@ var f = Typd(
 var f = Typd(
   ['a',    number],
   ['b',    number],
-  ['opts', maybe(Object)],
+  ['opts', maybe(Typd.Object)],
   (a, b, opts={}) => {/* ... */}
 );
 

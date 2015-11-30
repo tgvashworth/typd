@@ -235,7 +235,7 @@ describe('expect type checker', () => {
     [Typd.Object, new Number(NaN),     'not to throw'],
     [Typd.Object, {},                  'not to throw'],
     [Typd.Object, new Object(),        'not to throw'],
-    [Typd.Object, function () {},      'to throw'],
+    [Typd.Object, function () {},      'not to throw'],
 
     // function
     [Typd.function, undefined,           'to throw'],
@@ -280,7 +280,7 @@ describe('expect type checker', () => {
     [Typd.oneOf(Typd.boolean, Typd.string), true,     'not to throw'],
     [Typd.oneOf(Typd.boolean, Typd.string), {},       'to throw']
   ].forEach(([f, v, assertion, ...rest]) => {
-    it(`${assertion} for ${f.name} with ${inspect(v, { depth: 3, colors: false })}`, () => {
+    it(`${assertion} for ${f} with ${inspect(v, { depth: 3, colors: false })}`, () => {
       expect(() => f(v), assertion, ...rest);
     });
   });
