@@ -57,4 +57,27 @@ Typd.optionalOf = check => v => {
 };
 Typd.maybe = Typd.optionalOf;
 
+Typd.shape = (shape: Object) => (value: Object) => {
+  const keys = Object.keys(
+    Object.keys(shape)
+      .concat(Object.keys(value))
+      .reduce((acc, k) => (acc[k] = true, acc), {})
+  );
+
+  const result = keys.every(key => {
+    if (!shape.hasOwnProperty(key) || !value.hasOwnProperty(key)) {
+      return false;
+    }
+    try {
+      shape[key](value[key]);
+    } catch (e) {
+      return false;
+    }
+    return true;
+  });
+  if (!result) {
+    throw new Error('Argument did not match shape');
+  }
+};
+
 export default Typd;

@@ -278,7 +278,21 @@ describe('expect type checker', () => {
     // oneOf
     [Typd.oneOf(Typd.boolean, Typd.string), 'custom', 'not to throw'],
     [Typd.oneOf(Typd.boolean, Typd.string), true,     'not to throw'],
-    [Typd.oneOf(Typd.boolean, Typd.string), {},       'to throw']
+    [Typd.oneOf(Typd.boolean, Typd.string), {},       'to throw'],
+
+    // shape
+    [Typd.shape({ a: Typd.string }), { a: 'yes' }, 'not to throw'],
+    [Typd.shape({ a: Typd.string }), { a: 10 },    'to throw'],
+    [Typd.shape({
+      a: Typd.shape({
+        b: Typd.number
+      })
+    }), { a: { b: 10 } }, 'not to throw'],
+    [Typd.shape({
+      a: Typd.shape({
+        b: Typd.number
+      })
+    }), { a: { b: 'fish' } }, 'to throw']
   ].forEach(([f, v, assertion, ...rest]) => {
     it(`${assertion} for ${f} with ${inspect(v, { depth: 3, colors: false })}`, () => {
       expect(() => f(v), assertion, ...rest);

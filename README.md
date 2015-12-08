@@ -83,7 +83,6 @@ var f = Typd(
 );
 ```
 
-
 ## Contributing
 
 Please read the [contribution guidelines][contributing-url]. Contributions are
