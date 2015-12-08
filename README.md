@@ -70,8 +70,8 @@ var f = Typd(
 
 // Match an optional array of either strings or numbers.
 var f = Typd(
-  ['...args', maybe(arrayOf(oneOf(string, number)))],
-  (...args) => {/* ... */}
+  ['args', maybe(arrayOf(oneOf(string, number)))],
+  (args) => {/* ... */}
 );
 
 
