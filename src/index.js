@@ -27,18 +27,22 @@ Typd.String = (MATCH: String) => {};
 Typd.number = (MATCH: number) => {};
 Typd.Number = (MATCH: Number) => {};
 Typd.Object = (MATCH: Object) => {};
+
 Typd.function = arg => {
   if (typeof arg !== 'function') {
     throw new Error(`Value of argument 'MATCH' violates contract, expected function.`);
   }
 };
+
 Typd.ArrayOf = check => (arr: Array<any>) => {
   if (!Array.isArray(arr)) {
     throw new Error('Argument is not an Array');
   }
   arr.forEach(v => check(v));
 };
+
 Typd.arrayOf = Typd.ArrayOf;
+
 Typd.oneOf = (...checks) => v => {
   var result = checks.some(check => {
     try {
@@ -50,11 +54,13 @@ Typd.oneOf = (...checks) => v => {
     throw new Error('Argument was not one of supplied types');
   }
 };
+
 Typd.optionalOf = check => v => {
   if (typeof v !== 'undefined') {
     check(v);
   }
 };
+
 Typd.maybe = Typd.optionalOf;
 
 Typd.shape = (shape: Object) => (value: Object) => {
@@ -76,8 +82,8 @@ Typd.shape = (shape: Object) => (value: Object) => {
     return true;
   });
   if (!result) {
-    throw new Error('Argument did not match shape');
+    throw new Error(`Argument 'MATCH' not match required shape`);
   }
 };
 
-export default Typd;
+module.exports = Typd;

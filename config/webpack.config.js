@@ -21,7 +21,7 @@ module.exports = {
   },
   output: {
     path: './dist',
-    filename: 'typ.js'
+    filename: 'typd.js'
   },
   resolve: {
     extensions: [
