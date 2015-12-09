@@ -36,7 +36,9 @@ const add =
 
 The `Typd` function takes any number of `[string, function]` tuples that represent argument name and the *checker*, and finally the function to be wrapped.
 
-There are a few available checkers. Some match the `flow` type documentation:
+## API
+
+Here are the available checkers:
 
 - [`Typd.any`](http://flowtype.org/docs/quick-reference.html#the-any-primitive-type)
 - [`Typd.none`](http://flowtype.org/docs/quick-reference.html#the-none-primitive-type)
@@ -47,18 +49,19 @@ There are a few available checkers. Some match the `flow` type documentation:
 - [`Typd.number`](http://flowtype.org/docs/quick-reference.html#the-number-primitive-type)
 - [`Typd.Number`](http://flowtype.org/docs/quick-reference.html#the-number-constructor)
 - [`Typd.Object`](http://flowtype.org/docs/quick-reference.html#the-object-constructor)
-
-There are a few others available:
-
 - `Typd.function` matches any function
+
+There are others that accept other checkers as arguments to create compound checkers:
+
 - `Typd.arrayOf` takes another checker, and matches arrays that contain elements that pass the supplied checker type. For example, `Typd.arrayOf(Typd.boolean)`
 - `Typd.maybe` takes another checker, matching that type *or* undefined. For example, `Typd.maybe(Typd.boolean)`.
 - `Typd.oneOf` takes many checkers and makes sure one of them matches. For example, `Typd.oneOf(Typd.string, Typd.String)`.
+- `Typd.shape` takes an object that describes the expected shape of the value. The values should be (any) other checkers. For example, `Typd.shape({ a: Typd.number, b: Typd.maybe(Typd.arrayOf(Typd.string)) })`
 
 ## Examples
 
 ```js
-const { maybe, arrayOf, oneOf, string, number } = Typd;
+const { maybe, arrayOf, oneOf, string, number, shape } = Typd;
 
 // Match two numbers and an optional options object
 var f = Typd(
@@ -74,15 +77,27 @@ var f = Typd(
   (args) => {/* ... */}
 );
 
-
 // Match a string and an optional callback function
 var f = Typd(
   ['path', string],
   ['cb', maybe(Typd.function)],
   (path, cb) => {/* ... */}
 );
-```
 
+// Match a user object
+var f = Typd(
+  ['user', Typd.shape({
+    id: Typd.string,
+    username: Typd.string,
+    followers: Typd.number,
+    contact: Typd.shape({
+      emails: Typd.arrayOf(Typd.string),
+      phones: Typd.arrayOf(Typd.string)
+    })
+  })],
+  user => {/* ... */}
+);
+```
 
 ## Contributing
 
