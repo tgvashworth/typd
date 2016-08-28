@@ -64,11 +64,14 @@ Typd.optionalOf = check => v => {
 Typd.maybe = Typd.optionalOf;
 
 Typd.shape = (shape: Object) => (value: Object) => {
-  const keys = Object.keys(
-    Object.keys(shape)
-      .concat(Object.keys(value))
-      .reduce((acc, k) => (acc[k] = true, acc), {})
-  );
+  const allKeys = Object.keys(shape).concat(Object.keys(value));
+  const keys = Object.keys(allKeys.reduce(
+    (acc, k) => ({
+      ...acc,
+      [k]: true
+    }),
+    {}
+  ));
 
   const result = keys.every(key => {
     if (!shape.hasOwnProperty(key) || !value.hasOwnProperty(key)) {
